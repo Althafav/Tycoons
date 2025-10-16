@@ -1,4 +1,5 @@
-import { deliveryClient } from "@/modules/Globals2";
+import HeroSection from "@/components/HeroSection";
+import { deliveryClient } from "@/modules/Globals";
 import Image from "next/image";
 
 export default async function Home() {
@@ -7,6 +8,16 @@ export default async function Home() {
     .depthParameter(3)
     .toPromise();
   const pageData = response.data.item.elements;
-  console.log(pageData, "response");
-  return <div>{pageData.bannerheading.value}</div>;
+
+  return (
+    <div className="page">
+      <div>
+        <HeroSection
+          heading={pageData.bannerheading.value}
+          subheading={pageData.bannersubheading.value}
+          bannerimage={pageData.bannerimage.value[0]?.url}
+        />
+      </div>
+    </div>
+  );
 }
