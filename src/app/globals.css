@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 
+@theme {
+  --color-primary: #BC9841;
+  --color-primaryDark: #f97f2e;
+  --color-secondary: #464445;
+  --color-secondaryDark: #1db6af;
+
+}
+
 
 .container {
   width: 100%;

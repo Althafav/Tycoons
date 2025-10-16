@@ -40,10 +40,10 @@ export default function HeroSection({
           {ctabuttons?.map((item: any, index: number) => (
             <Link
               key={index}
-              href={item.link?.value || "#"}
+              href={item.elements.link?.value || "#"}
               className="px-6 py-3 bg-primary hover:bg-primaryDark text-white font-semibold rounded-full transition"
             >
-              {item.name?.value}
+              {item.elements.name?.value}
             </Link>
           ))}
         </div>
