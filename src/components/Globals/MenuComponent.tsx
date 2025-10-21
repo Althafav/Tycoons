@@ -52,7 +52,7 @@ export default function MenuComponent2() {
 
   if (!pageData) return null;
 
-  const onLight = scrolled || menuOpen || pathname === "/pillars";
+  const onLight = scrolled || menuOpen || pathname === "/investment-circles";
 
   // Helpers to read items safely (Kontent structures often vary)
 
