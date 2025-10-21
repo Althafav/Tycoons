@@ -129,6 +129,12 @@ export default async function Home() {
                           __html: item.elements.content.value,
                         }}
                       />
+
+                      <div className="mt-8">
+                        <Link href={item.elements.ctalink.value} className="w-full bg-secondary hover:bg-secondaryDark py-2 block text-center rounded-full text-white">
+                          {item.elements.ctaname.value}
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 );
