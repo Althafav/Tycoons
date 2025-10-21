@@ -200,25 +200,6 @@ export default async function Home() {
             </div>
           </div>
         </Section>
-
-        <Section>
-          <div className="container mx-auto">
-            <h2 className="text-center text-3xl mb-8">{pageData.partnerheading.value}</h2>
-            <div className="flex flex-wrap gap-5 items-center justify-center">
-              {pageData.partneritems.linkedItems.map((item: any) => {
-                return (
-                  <Link href={item.elements.link.value} key={item.system.id} className="w-[150px] h-[150px] p-3 shadow-xl rounded-full flex justify-center items-center">
-                    <img
-                      src={item.elements.image.value[0]?.url}
-                      alt={item.elements.name.value}
-                      className="w-[100px] object-contain"
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </Section>
       </div>
     </div>
   );
