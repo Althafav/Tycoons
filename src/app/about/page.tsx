@@ -39,6 +39,23 @@ export default async function page() {
                 />
               </div>
             </div>
+
+            <div className="grid sm:grid-cols-12 gap-5 mt-10">
+              <div className="col-span-2">
+                <h1 className="text-4xl sm:text-5xl text-primary">
+                  {pageData.visionheading.value}
+                </h1>
+              </div>
+
+              <div className="col-span-10">
+                <div
+                  className="text-white prose max-w-none mt-10 text-lg"
+                  dangerouslySetInnerHTML={{
+                    __html: pageData.visioncontent.value,
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
