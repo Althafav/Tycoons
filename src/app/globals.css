@@ -1,14 +1,28 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+
+
 @theme {
   --color-primary: #BC9841;
-  --color-primaryDark: #f97f2e;
+  --color-primaryDark: #ab8a3b;
   --color-secondary: #464445;
-  --color-secondaryDark: #1db6af;
+  --color-secondaryDark: #2e2d2d;
 
 }
 
+.gradient {
+
+  background:  linear-gradient(to right, #DED1BC -5.98%, #9A9287 59.45%, #464445 99.52%);
+}
+
+body {
+  font-family: "Satoshi", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-forum), serif;
+}
 
 .container {
   width: 100%;

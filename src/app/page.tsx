@@ -1,3 +1,4 @@
+import CTAButton from "@/components/Blocks/CTAComponent";
 import HeroSection from "@/components/HeroSection";
 import Section from "@/components/UI/Section";
 import { deliveryClient } from "@/modules/Globals";
@@ -77,7 +78,150 @@ export default async function Home() {
             </div>
           </div>
         </Section>
+
+        <Section>
+          <div className="container mx-auto">
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <h2 className="text-primary text-5xl">
+                  {pageData.downloadbrochureheading.value}
+                </h2>
+              </div>
+              <div>
+                <div
+                  className="prose"
+                  dangerouslySetInnerHTML={{
+                    __html: pageData.downloadbrochurecontent.value,
+                  }}
+                />
+
+                <div className="mt-8">
+                  <CTAButton
+                    variant="secondary"
+                    buttonname={pageData.downloadbrochurectaname.value}
+                    buttonlink={pageData.downloadbrochurectalink.value}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section>
+          <div className="container mx-auto">
+            <h2 className="text-3xl mb-8">{pageData.pillarsheading.value}</h2>
+
+            <div className="grid sm:grid-cols-3 gap-5">
+              {pageData.pillaritems.linkedItems.map((item: any) => {
+                return (
+                  <div
+                    key={item.system.id}
+                    className="shadow rounded overflow-hidden"
+                  >
+                    <img src={item.elements.image.value[0]?.url} alt="" />
+                    <div className="p-5">
+                      <h4 className="text-primary text-2xl mb-3">
+                        {item.elements.name.value}
+                      </h4>
+                      <div
+                        className="prose"
+                        dangerouslySetInnerHTML={{
+                          __html: item.elements.content.value,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Section>
+
+        {pageData.agendctabuttonlink.value && (
+          <Section>
+            <div className="container mx-auto">
+              <div className="cta-card w-full relative gradient h-[380px] rounded-2xl flex items-center">
+                <img
+                  src={pageData.agendactaimage.value[0]?.url}
+                  alt=""
+                  className="absolute right-0 h-full object-cover"
+                />
+
+                <div className="p-20">
+                  <div className="relative z-10 max-w-md">
+                    <h2 className="text-4xl text-white">
+                      {pageData.agendactaheading.value}
+                    </h2>
+                    <p className="text-white">
+                      {pageData.agendactasubheading.value}
+                    </p>
+
+                    <div className="mt-8">
+                      <CTAButton
+                        variant="secondary"
+                        buttonname={pageData.agendctabuttonname.value}
+                        buttonlink={pageData.agendctabuttonlink.value}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Section>
+        )}
+
+        <Section>
+          <div className="relative h-[560px] flex justify-center items-center">
+            <img
+              src={pageData.ctaimage.value[0]?.url}
+              alt={pageData.ctaheading.value}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            <div className="container mx-auto">
+              <div className="relative max-w-4xl mx-auto z-10">
+                <h2 className="text-2xl sm:text-4xl text-white text-center">
+                  {pageData.ctaheading.value}
+                </h2>
+
+                <div className="mt-8 flex flex-wrap gap-2 justify-center">
+                  {pageData.ctabutton.linkedItems.map((item: any) => {
+                    return (
+                      <CTAButton
+                        key={item.system.id}
+                        variant="primary"
+                        buttonname={item.elements.name.value}
+                        buttonlink={item.elements.link.value}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section>
+          <div className="container mx-auto">
+            <h2 className="text-center text-3xl mb-8">{pageData.partnerheading.value}</h2>
+            <div className="flex flex-wrap gap-5 items-center justify-center">
+              {pageData.partneritems.linkedItems.map((item: any) => {
+                return (
+                  <div key={item.system.id} className="w-[200px] h-[200px] p-2 shadow-xl rounded-full flex justify-center items-center">
+                    <img
+                      src={item.elements.image.value[0]?.url}
+                      alt={item.elements.name.value}
+                      className="w-[100px] object-contain"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Section>
       </div>
     </div>
   );
 }
+
+export const revalidate = 0;
