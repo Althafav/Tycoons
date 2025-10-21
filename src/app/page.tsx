@@ -207,13 +207,13 @@ export default async function Home() {
             <div className="flex flex-wrap gap-5 items-center justify-center">
               {pageData.partneritems.linkedItems.map((item: any) => {
                 return (
-                  <div key={item.system.id} className="w-[200px] h-[200px] p-2 shadow-xl rounded-full flex justify-center items-center">
+                  <Link href={item.elements.link.value} key={item.system.id} className="w-[150px] h-[150px] p-3 shadow-xl rounded-full flex justify-center items-center">
                     <img
                       src={item.elements.image.value[0]?.url}
                       alt={item.elements.name.value}
                       className="w-[100px] object-contain"
                     />
-                  </div>
+                  </Link>
                 );
               })}
             </div>
