@@ -14,7 +14,7 @@ export default async function page() {
   const pageData = data.item.elements as any;
   return (
     <div>
-      <div className="relative h-screen flex justify-center items-center">
+      <div className="relative py-12 sm:py-16 flex justify-center items-center">
         <img
           src={pageData.bannerimage.value[0]?.url}
           alt=""
@@ -22,7 +22,7 @@ export default async function page() {
         />
 
         <div className="container">
-          <div className="relative z-10">
+          <div className="relative z-10 pt-20 ">
             <div className="grid sm:grid-cols-12 gap-5">
               <div className="col-span-2">
                 <h1 className="text-4xl sm:text-5xl text-primary">

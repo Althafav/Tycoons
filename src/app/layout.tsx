@@ -25,8 +25,8 @@ export default function RootLayout({
       </head>
       <body className={`${forumFont.variable} antialiased`}>
         <MenuComponent2 />
-        {children}
-        <FooterComponent/>
+        <div className="">{children}</div>
+        <FooterComponent />
       </body>
     </html>
   );

@@ -21,7 +21,7 @@ export default async function page() {
           />
 
           <div className="p-10 sm:p-20 container mx-auto">
-            <div className="relative z-10 ">
+            <div className="relative z-10 pt-20">
               <div className="grid sm:grid-cols-2 gap-10">
                 <div>
                   <h2 className="text-3xl sm:text-6xl text-white mb-3">

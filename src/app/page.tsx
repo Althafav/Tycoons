@@ -124,7 +124,7 @@ export default async function Home() {
                         {item.elements.name.value}
                       </h4>
                       <div
-                        className="prose"
+                        className="prose line-clamp-3"
                         dangerouslySetInnerHTML={{
                           __html: item.elements.content.value,
                         }}
