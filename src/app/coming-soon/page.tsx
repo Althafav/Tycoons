@@ -9,8 +9,6 @@ export default function Page() {
     <>
       <div className={`h-[84px] bg-black`} />;
       <div className="relative  ">
-       
-
         <Section>
           <div className="container mx-auto px-4">
             {/* Hero */}
@@ -23,11 +21,6 @@ export default function Page() {
                 Reservations Opening{" "}
                 <span className="text-secondary">Soon</span>
               </h1>
-
-              <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-neutral-600">
-                We’re putting the final touches on an elevated experience. Be
-                the first to know when bookings go live.
-              </p>
             </div>
 
             {/* Card */}
@@ -44,8 +37,8 @@ export default function Page() {
                         Get in touch
                       </h2>
                       <p className="mt-2 text-neutral-600">
-                        For inquiries, private events, or early access, drop us
-                        a line and our team will assist you.
+                        For any inquiries or more information, please contact us
+                        at info@thetycoons.com.
                       </p>
 
                       <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -65,24 +58,10 @@ export default function Page() {
                           Back to Home
                         </Link>
                       </div>
-
-                      {/* Email in plain text for copy/paste */}
-                      <p className="mt-3 text-sm text-neutral-500 select-all">
-                        info@thetycoons.com
-                      </p>
                     </div>
                   </div>
                 </div>
-
-               
               </div>
-            </div>
-
-            {/* Footer note */}
-            <div className="mx-auto mt-10 max-w-3xl text-center">
-              <p className="text-sm text-neutral-500">
-                Follow our updates — the countdown has begun.
-              </p>
             </div>
           </div>
         </Section>
