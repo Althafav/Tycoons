@@ -126,7 +126,7 @@ export default function FooterComponent() {
               </div>
             </div>
             <div className="text-left w-full sm:w-auto">
-              <div className="grid grid-cols-2 sm:grid-cols-2 gap-x-10 gap-y-2">
+              <div className="grid  gap-2">
                 {pageData.footermenuitems.linkedItems.map((item: any) => (
                   <Link
                     key={item.system.id}
@@ -140,7 +140,10 @@ export default function FooterComponent() {
             </div>
 
             <div className="">
-                
+              <div
+                className="text-white prose prose-a:text-white prose-h3:text-white"
+                dangerouslySetInnerHTML={{ __html: pageData.contactinfo.value }}
+              />
             </div>
           </div>
         </div>

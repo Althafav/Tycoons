@@ -75,15 +75,17 @@ export default async function page({
           <p className="text-white text-3xl font-medium mb-4">
             {pageData.featureheading.value}
           </p>
-          <p className="text-white max-w-2xl text-lg mb-12">
-            {pageData.featuresubheading.value}
-          </p>
+
+          <div
+            className="prose text-white mb-8"
+            dangerouslySetInnerHTML={{ __html: pageData.featurecontent.value }}
+          />
           <div className="grid sm:grid-cols-4 gap-5">
             {pageData.featureitems.linkedItems.map((item: any) => {
               return (
                 <div
                   key={item.system.id}
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col justify-start items-center h-[230px]"
                 >
                   <div className="bg-white shadow-2xl h-[120px] w-[120px] rounded-full p-5 flex items-center justify-center">
                     <img
@@ -93,7 +95,7 @@ export default async function page({
                     />
                   </div>
 
-                  <p className="text-white mt-4 text-center">
+                  <p className="text-white text-center mt-6">
                     {item.elements.name.value}
                   </p>
                 </div>
@@ -116,7 +118,7 @@ export default async function page({
               {pageData.benefititems.linkedItems.map((item: any) => {
                 return (
                   <div
-                    className="text-white bg-black/50 p-10 rounded-2xl"
+                    className="text-white bg-black/50 p-10 rounded-2xl "
                     key={item.system.id}
                   >
                     <p className="text-2xl sm:text-4xl mb-8 max-w-sm font-medium">
