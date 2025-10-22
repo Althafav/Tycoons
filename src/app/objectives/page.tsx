@@ -26,7 +26,7 @@ export async function generateMetadata() {
       siteName: SITE_NAME,
       images: [
         {
-          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
+          url: `/assets/logos/tycoons-thumbnail.png`,
           width: 1200,
           height: 630,
         },
