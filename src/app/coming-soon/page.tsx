@@ -18,9 +18,16 @@ export default function Page() {
               </span>
 
               <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-primary">
-                Reservations Opening{" "}
-                <span className="text-secondary">Soon</span>
+                Reservations{" "} <br />
+                <span className="text-secondary"> Opening Soon</span>
               </h1>
+
+              <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-neutral-600">
+                An exclusive opportunity to join the world’s foremost
+                decision-makers in a private setting designed for strategic
+                dialogue, high-level networking, and the orchestration of global
+                opportunity.
+              </p>
             </div>
 
             {/* Card */}

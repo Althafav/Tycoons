@@ -1,7 +1,45 @@
 import Section from "@/components/UI/Section";
-import { deliveryClient } from "@/modules/Globals";
+import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
 import Link from "next/link";
 import React from "react";
+
+
+export async function generateMetadata() {
+  const { data } = await deliveryClient
+    .item("home_page___tycoons")
+    .depthParameter(2)
+    .toPromise();
+
+  const pageData = data.item.elements as any;
+
+  return {
+    title: pageData.metadata__pagetitle.value,
+    description: pageData.metadata__metadescription.value,
+    alternates: {
+      canonical: `${SITE_URL}investment-circles`,
+    },
+    openGraph: {
+      title: pageData.metadata__pagetitle.value,
+      description: pageData.metadata__metadescription.value,
+      url: `${SITE_URL}investment-circles`,
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageData.metadata__pagetitle.value,
+      description: pageData.metadata__metadescription.value,
+      images: [`${SITE_URL}assets/logos/tycoons-thumbnail.png`],
+    },
+  };
+}
 
 export default async function page() {
   const { data } = await deliveryClient
@@ -105,8 +143,8 @@ export default async function page() {
                               alt={item.elements.image.value[0]?.name}
                               className={`w-full object-cover aspect-square ${
                                 isReversed
-                                  ? "sm:rounded-r-xl"
-                                  : "sm:rounded-l-xl"
+                                  ? "sm:rounded-r-full"
+                                  : "sm:rounded-l-full"
                               }`}
                             />
                           </div>

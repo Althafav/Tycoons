@@ -128,7 +128,7 @@ export default function MenuComponent2() {
                     {children.length > 0 && (
                       <div
                         className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
-                                   absolute left-0 top-6 mt-2 min-w-60 rounded-xl border bg-white shadow-lg
+                                   absolute left-0 top-6 mt-2 min-w-60 rounded-xl bg-white shadow-lg
                                     p-2"
                         role="menu"
                         aria-label={`${item?.elements?.name?.value} submenu`}

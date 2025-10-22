@@ -25,7 +25,7 @@ export async function generateMetadata() {
       siteName: SITE_NAME,
       images: [
         {
-          url: `${SITE_URL}assets/logos/ips-logo-thumbnail.jpg`,
+          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
           width: 1200,
           height: 630,
         },
@@ -36,7 +36,7 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title: pageData.metadata__pagetitle.value,
       description: pageData.metadata__metadescription.value,
-      images: [`${SITE_URL}assets/logos/ips-logo-thumbnail.jpg`],
+      images: [`${SITE_URL}assets/logos/tycoons-thumbnail.png`],
     },
   };
 }
@@ -132,13 +132,15 @@ export default async function Home() {
                   }}
                 />
 
-                <div className="mt-8">
-                  <CTAButton
-                    variant="secondary"
-                    buttonname={pageData.downloadbrochurectaname.value}
-                    buttonlink={pageData.downloadbrochurectalink.value}
-                  />
-                </div>
+                {pageData.downloadbrochurectalink.value && (
+                  <div className="mt-8">
+                    <CTAButton
+                      variant="secondary"
+                      buttonname={pageData.downloadbrochurectaname.value}
+                      buttonlink={pageData.downloadbrochurectalink.value}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

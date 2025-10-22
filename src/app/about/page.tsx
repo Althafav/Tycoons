@@ -1,9 +1,47 @@
 import CTABlock from "@/components/Blocks/CTABlock";
 import Heading2 from "@/components/UI/Heading2";
 import Section from "@/components/UI/Section";
-import { deliveryClient } from "@/modules/Globals";
+import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
 import Link from "next/link";
 import React from "react";
+
+
+export async function generateMetadata() {
+  const { data } = await deliveryClient
+    .item("home_page___tycoons")
+    .depthParameter(2)
+    .toPromise();
+
+  const pageData = data.item.elements as any;
+
+  return {
+    title: pageData.metadata__pagetitle.value,
+    description: pageData.metadata__metadescription.value,
+    alternates: {
+      canonical: `${SITE_URL}about`,
+    },
+    openGraph: {
+      title: pageData.metadata__pagetitle.value,
+      description: pageData.metadata__metadescription.value,
+      url: `${SITE_URL}about`,
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageData.metadata__pagetitle.value,
+      description: pageData.metadata__metadescription.value,
+      images: [`${SITE_URL}assets/logos/tycoons-thumbnail.png`],
+    },
+  };
+}
 
 export default async function page() {
   const { data } = await deliveryClient
