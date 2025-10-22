@@ -8,3 +8,6 @@ export const deliveryClient = createDeliveryClient({
     usePreviewMode: true,
   },
 });
+
+export const SITE_NAME = "Tycoons";
+export const SITE_URL = "https://www.thetycoons.com/";

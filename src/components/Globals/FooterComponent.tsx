@@ -126,7 +126,7 @@ export default function FooterComponent() {
               </div>
             </div>
             <div className="text-left w-full sm:w-auto">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-2">
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-x-10 gap-y-2">
                 {pageData.footermenuitems.linkedItems.map((item: any) => (
                   <Link
                     key={item.system.id}
@@ -137,6 +137,10 @@ export default function FooterComponent() {
                   </Link>
                 ))}
               </div>
+            </div>
+
+            <div className="">
+                
             </div>
           </div>
         </div>

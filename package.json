@@ -9,8 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@kentico/kontent-delivery": "^11.13.0",
-    "@kentico/kontent-management": "^2.9.2",
     "@kontent-ai/delivery-sdk": "^16.3.0",
     "@tailwindcss/typography": "^0.5.19",
     "lucide-react": "^0.546.0",

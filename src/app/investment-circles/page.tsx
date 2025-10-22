@@ -123,3 +123,4 @@ export default async function page() {
     </div>
   );
 }
+export const revalidate = 0;
