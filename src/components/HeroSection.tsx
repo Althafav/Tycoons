@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import CTAButton from "./Blocks/CTAComponent";
 
 export default function HeroSection({
   heading,
@@ -35,19 +36,22 @@ export default function HeroSection({
       <div className="container relative z-10 pt-20">
         <h1 className="text-5xl font-bold mb-4">{heading}</h1>
 
-        <p className="text-lg mb-6">{subheading}</p>
+        <p className="text-lg">{subheading}</p>
 
-        <div className="flex flex-wrap gap-4">
-          {ctabuttons?.map((item: any, index: number) => (
-            <Link
-              key={index}
-              href={item.elements.link?.value || "#"}
-              className="px-6 py-3 bg-primary hover:bg-primaryDark text-white font-semibold rounded-full transition"
-            >
-              {item.elements.name?.value}
-            </Link>
-          ))}
-        </div>
+        {ctabuttons && (
+          <div className="mt-8">
+            {ctabuttons.map((item: any) => {
+              return (
+                <CTAButton
+                  key={item.system.id}
+                  variant={item.elements.variant.value[0].name}
+                  buttonname={item.elements.name.value}
+                  buttonlink={item.elements.link.value}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

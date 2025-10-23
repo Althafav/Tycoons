@@ -111,7 +111,7 @@ export default async function page() {
                   key={item.system.id}
                   className="shadow-xl p-10 rounded-3xl"
                 >
-                  <h4 className="text-primary text-2xl mb-3 max-w-[220px]">
+                  <h4 className="text-2xl sm:text-3xl text-primary mb-4">
                     {item.elements.name.value}
                   </h4>
                   <div

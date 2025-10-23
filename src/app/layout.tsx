@@ -3,6 +3,7 @@ import { Forum } from "next/font/google";
 import "./globals.css";
 import MenuComponent2 from "@/components/Globals/MenuComponent";
 import FooterComponent from "@/components/Globals/FooterComponent";
+import SmoothScrollWrapper from "@/components/Globals/SmoothScrollWrapper";
 
 const forumFont = Forum({
   variable: "--font-forum",
@@ -24,9 +25,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${forumFont.variable} antialiased`}>
-        <MenuComponent2 />
-        <div className="">{children}</div>
-        <FooterComponent />
+        <SmoothScrollWrapper>
+          <MenuComponent2 />
+          <div className="">{children}</div>
+          <FooterComponent />
+        </SmoothScrollWrapper>
       </body>
     </html>
   );

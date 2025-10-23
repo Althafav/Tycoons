@@ -1,3 +1,4 @@
+import CTAButton from "@/components/Blocks/CTAComponent";
 import Heading2 from "@/components/UI/Heading2";
 import Section from "@/components/UI/Section";
 import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
@@ -65,6 +66,21 @@ export default async function page() {
               className="prose text-white"
               dangerouslySetInnerHTML={{ __html: pageData.aboutcontent.value }}
             />
+
+            {pageData.bannercta.linkedItems && (
+              <div className="mt-8 flex flex-wrap gap-2">
+                {pageData.bannercta.linkedItems.map((item: any) => {
+                  return (
+                    <CTAButton
+                      key={item.system.id}
+                      variant={item.elements.variant.value[0].name}
+                      buttonname={item.elements.name.value}
+                      buttonlink={item.elements.link.value}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -106,7 +122,7 @@ export default async function page() {
             {pageData.participantitems.linkedItems.map((item: any) => {
               return (
                 <div key={item.system.id} className="p-5 shadow-xl rounded-2xl">
-                  <h4 className="text-3xl text-primary mb-4">
+                  <h4 className="text-2xl sm:text-3xl text-primary mb-4">
                     {item.elements.name.value}
                   </h4>
                   <div

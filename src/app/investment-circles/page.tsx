@@ -51,11 +51,11 @@ export default async function page() {
   return (
     <div>
       <div className="">
-        <div className=" w-full relative   rounded-2xl flex items-center py-8">
+        <div className=" w-full relative gradient overflow-hidden  rounded-2xl flex items-center py-8">
           <img
             src={pageData.bannerimage.value[0]?.url}
             alt=""
-            className="absolute inset-0 w-full  h-full object-cover"
+            className="absolute inset-0 w-full h-full  object-contain"
           />
 
           <div className="p-10 sm:p-20 container mx-auto">
