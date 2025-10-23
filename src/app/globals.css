@@ -69,3 +69,29 @@ box-shadow: 0 -5px 6.4px -1px rgba(0, 0, 0, 0.25);
 }
 
 
+@layer utilities {
+  /* Basic zoom-in */
+  .hover-card-zoom-in {
+    @apply shadow-xl p-10 rounded-3xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2;
+  }
+
+  /* Subtle lift + shadow only */
+  .hover-card-lift {
+    @apply  transition-all duration-500 hover:-translate-y-2 ;
+  }
+
+ 
+
+
+ 
+
+  /* Slight tilt with scale */
+  .hover-tilt {
+    @apply   transition-transform duration-500 hover:-rotate-3 hover:scale-[1.05] ;
+  }
+
+ 
+
+  
+}
+

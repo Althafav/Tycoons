@@ -50,7 +50,7 @@ export default async function Home() {
     .toPromise();
 
   const pageData = data.item.elements as any;
- 
+
   return (
     <div className="page">
       <div>

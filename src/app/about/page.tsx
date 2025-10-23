@@ -2,9 +2,9 @@ import CTABlock from "@/components/Blocks/CTABlock";
 import Heading2 from "@/components/UI/Heading2";
 import Section from "@/components/UI/Section";
 import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
+import { ArrowRight, MoveRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-
 
 export async function generateMetadata() {
   const { data } = await deliveryClient
@@ -109,7 +109,7 @@ export default async function page() {
               return (
                 <div
                   key={item.system.id}
-                  className="shadow-xl p-10 rounded-3xl"
+                  className="shadow-xl p-10 rounded-3xl hover-card-lift"
                 >
                   <h4 className="text-2xl sm:text-3xl text-primary mb-4">
                     {item.elements.name.value}
@@ -124,26 +124,16 @@ export default async function page() {
             })}
           </div>
 
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center mt-8 ">
             <Link
               href={pageData.objectivesctalink.value}
-              className="underline text-primary text-xl flex gap-2 items-center"
+              className=" underline text-primary text-xl flex gap-2 items-center"
             >
               {pageData.objectivesctaname.value}
 
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="38"
-                height="38"
-                viewBox="0 0 38 38"
-                fill="none"
-              >
-                <circle cx="19.0703" cy="18.6775" r="18.6775" fill="#BC9841" />
-                <path
-                  d="M28.9274 19.1952C29.2134 18.9091 29.2134 18.4454 28.9274 18.1593L24.266 13.4979C23.9799 13.2119 23.5162 13.2119 23.2301 13.4979C22.9441 13.784 22.9441 14.2478 23.2301 14.5338L27.3736 18.6772L23.2301 22.8207C22.9441 23.1067 22.9441 23.5705 23.2301 23.8566C23.5162 24.1426 23.9799 24.1426 24.266 23.8566L28.9274 19.1952ZM9.73169 18.6772V19.4097H28.4094V18.6772V17.9448H9.73169V18.6772Z"
-                  fill="black"
-                />
-              </svg>
+              <div className="hover-tilt bg-primary rounded-full p-2">
+                <MoveRight className="text-black" size={20} />
+              </div>
             </Link>
           </div>
         </div>
