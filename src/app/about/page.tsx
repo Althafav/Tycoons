@@ -8,7 +8,7 @@ import React from "react";
 
 export async function generateMetadata() {
   const { data } = await deliveryClient
-    .item("home_page___tycoons")
+    .item("about_page_tycoon")
     .depthParameter(2)
     .toPromise();
 
@@ -59,7 +59,7 @@ export default async function page() {
           className="w-full h-full absolute inset-0 object-cover"
         />
 
-        <div className="container">
+        <div className="container mx-auto">
           <div className="relative z-10 pt-20 ">
             <div className="grid sm:grid-cols-12 gap-5">
               <div className="col-span-2">

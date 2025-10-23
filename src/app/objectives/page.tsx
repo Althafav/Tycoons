@@ -3,11 +3,9 @@ import Section from "@/components/UI/Section";
 import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
 import React from "react";
 
-
-
 export async function generateMetadata() {
   const { data } = await deliveryClient
-    .item("home_page___tycoons")
+    .item("objectives_page___tycoons")
     .depthParameter(2)
     .toPromise();
 
@@ -26,7 +24,7 @@ export async function generateMetadata() {
       siteName: SITE_NAME,
       images: [
         {
-          url: `/assets/logos/tycoons-thumbnail.png`,
+          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
           width: 1200,
           height: 630,
         },
@@ -73,25 +71,27 @@ export default async function page() {
 
       <Section>
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 gap-5">
-            {pageData.objectiveitems.linkedItems.map((item: any) => {
-              return (
-                <div
-                  key={item.system.id}
-                  className="p-10 gradient shadow-xl rounded-2xl"
-                >
-                  <h4 className="text-3xl text-white mb-4">
-                    {item.elements.name.value}
-                  </h4>
+          <div className="relative">
+            <div className="grid grid-cols-1 gap-5">
+              {pageData.objectiveitems.linkedItems.map((item: any) => {
+                return (
                   <div
-                    className="text-white prose max-w-none"
-                    dangerouslySetInnerHTML={{
-                      __html: item.elements.content.value,
-                    }}
-                  />
-                </div>
-              );
-            })}
+                    key={item.system.id}
+                    className="p-14 gradient rounded-2xl sticky top-40 shadow-top"
+                  >
+                    <h4 className="text-3xl text-white mb-4">
+                      {item.elements.name.value}
+                    </h4>
+                    <div
+                      className="text-white prose max-w-none"
+                      dangerouslySetInnerHTML={{
+                        __html: item.elements.content.value,
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </Section>

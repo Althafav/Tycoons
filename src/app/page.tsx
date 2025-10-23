@@ -1,3 +1,5 @@
+import ScrollRevealText from "@/components/Animations/ScrollRevealText";
+import CTABlock2 from "@/components/Blocks/CTABlock2";
 import CTAButton from "@/components/Blocks/CTAComponent";
 import HeroSection from "@/components/HeroSection";
 import Section from "@/components/UI/Section";
@@ -48,7 +50,7 @@ export default async function Home() {
     .toPromise();
 
   const pageData = data.item.elements as any;
-
+ 
   return (
     <div className="page">
       <div>
@@ -61,20 +63,23 @@ export default async function Home() {
 
         <Section>
           <div className="container mx-auto">
-            <div
+            {/* <div
               className="prose max-w-4xl text-xl"
               dangerouslySetInnerHTML={{ __html: pageData.aboutcontent.value }}
-            />
+            /> */}
+            <ScrollRevealText content={pageData.aboutcontent.value} />
           </div>
         </Section>
 
         <Section>
-          <div className="relative py-12 sm:py-20 overflow-hidden">
-            <img
-              src={pageData.statisticbackgroundimage.value[0]?.url}
-              alt={pageData.statisticsheading.value}
-              className="absolute inset-0 w-full h-full object-cover brightness-50"
-            />
+          <div
+            className="relative py-12 sm:py-20 overflow-hidden bg-fixed bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${pageData.statisticbackgroundimage.value[0]?.url})`,
+            }}
+          >
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/50"></div>
 
             <div className="container mx-auto relative z-10">
               <h2 className="text-4xl sm:text-6xl font-bold text-center text-white mb-10">
@@ -103,14 +108,16 @@ export default async function Home() {
                 )}
               </div>
 
-              <div className="flex justify-center">
-                {pageData.bannercta.linkedItems.map((item: any) => {
-                  return (
-                    <Link href={item.elements.link.value} key={item.system.id}>
-                      {item.elements.name.value}
-                    </Link>
-                  );
-                })}
+              <div className="flex justify-center mt-8">
+                {pageData.bannercta.linkedItems.map((item: any) => (
+                  <Link
+                    href={item.elements.link.value}
+                    key={item.system.id}
+                    className="px-4 py-2 bg-white text-black rounded-full transition-all duration-300 hover:bg-transparent hover:text-white hover:border hover:border-white"
+                  >
+                    {item.elements.name.value}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -120,16 +127,13 @@ export default async function Home() {
           <div className="container mx-auto">
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <h2 className="text-primary text-5xl">
+                <h2 className="text-primary text-3xl sm:text-5xl">
                   {pageData.downloadbrochureheading.value}
                 </h2>
               </div>
               <div>
-                <div
-                  className="prose"
-                  dangerouslySetInnerHTML={{
-                    __html: pageData.downloadbrochurecontent.value,
-                  }}
+                <ScrollRevealText
+                  content={pageData.downloadbrochurecontent.value}
                 />
 
                 {pageData.downloadbrochurectalink.value && (
@@ -157,7 +161,13 @@ export default async function Home() {
                     key={item.system.id}
                     className="shadow rounded overflow-hidden"
                   >
-                    <img src={item.elements.image.value[0]?.url} alt="" />
+                    <div className="group relative  overflow-hidden">
+                      <img
+                        src={item.elements.image.value[0]?.url}
+                        alt=""
+                        className="h-[270px] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
                     <div className="p-5">
                       <h4 className="text-primary text-2xl mb-3">
                         {item.elements.name.value}
@@ -218,36 +228,17 @@ export default async function Home() {
           </Section>
         )}
 
-        <Section>
-          <div className="relative h-[560px] flex justify-center items-center">
-            <img
-              src={pageData.ctaimage.value[0]?.url}
-              alt={pageData.ctaheading.value}
-              className="absolute inset-0 w-full h-full object-cover"
+        {pageData.ctablock.linkedItems.map((item: any) => {
+          return (
+            <CTABlock2
+              key={item.system.id}
+              backgroundimage={item.elements.backgroundimage.value[0]?.url}
+              heading={item.elements.heading.value}
+              subheading={item.elements.subheading.value}
+              ctabutton={item.elements.ctabuttons.linkedItems}
             />
-
-            <div className="container mx-auto">
-              <div className="relative max-w-4xl mx-auto z-10">
-                <h2 className="text-2xl sm:text-4xl text-white text-center">
-                  {pageData.ctaheading.value}
-                </h2>
-
-                <div className="mt-8 flex flex-wrap gap-2 justify-center">
-                  {pageData.ctabutton.linkedItems.map((item: any) => {
-                    return (
-                      <CTAButton
-                        key={item.system.id}
-                        variant="primary"
-                        buttonname={item.elements.name.value}
-                        buttonlink={item.elements.link.value}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Section>
+          );
+        })}
       </div>
     </div>
   );

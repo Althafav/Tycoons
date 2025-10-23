@@ -23,7 +23,6 @@ export default function CTABlock({
 
             <div className="mt-8">
               {ctabuttons.map((item: any) => {
-                console.log(item.elements.variant.value[0]?.name);
                 return (
                   <CTAButton
                     key={item.system.id}

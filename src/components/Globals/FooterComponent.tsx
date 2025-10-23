@@ -10,9 +10,11 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Section from "../UI/Section";
+import { usePathname } from "next/navigation";
 
 export default function FooterComponent() {
   const [pageData, setPageData] = useState<any | null>(null);
+    const pathname = usePathname();
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -30,12 +32,15 @@ export default function FooterComponent() {
     };
   }, []);
 
+  const showPartners = pathname === '/' || pathname === '/about'
+
   if (!pageData) return null;
 
-  console.log(pageData, "data");
+
   return (
     <>
-      <Section>
+     {showPartners && (
+       <Section>
         <div className="container mx-auto">
           <h2 className="text-center text-3xl mb-8">
             {pageData.partnerheading.value}
@@ -59,6 +64,7 @@ export default function FooterComponent() {
           </div>
         </div>
       </Section>
+     )}
       <div className="bg-secondary py-12 sm:py-16">
         <div className="container mx-auto">
           <div className="flex justify-between sm:flex-row flex-col gap-5">

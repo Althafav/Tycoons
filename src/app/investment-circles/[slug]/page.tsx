@@ -1,6 +1,51 @@
+import CTABlock2 from "@/components/Blocks/CTABlock2";
 import Section from "@/components/UI/Section";
-import { deliveryClient } from "@/modules/Globals";
+import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
 import React from "react";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const response = await deliveryClient
+    .items()
+    .type("pillardetailpagetycoons")
+    .equalsFilter("elements.slug", slug)
+    .toPromise();
+
+  const pageData = response.data.items[0].elements as any;
+
+  return {
+    title: pageData.metadata__pagetitle.value,
+    description: pageData.metadata__metadescription.value,
+    alternates: {
+      canonical: `${SITE_URL}${slug}`,
+    },
+    openGraph: {
+      title: pageData.metadata__pagetitle.value,
+      description: pageData.metadata__metadescription.value,
+      url: `${SITE_URL}${slug}`,
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageData.metadata__pagetitle.value,
+      description: pageData.metadata__metadescription.value,
+      images: [`${SITE_URL}assets/logos/tycoons-thumbnail.png`],
+    },
+  };
+}
 
 export default async function page({
   params,
@@ -137,6 +182,18 @@ export default async function page({
           </div>
         </div>
       </div>
+
+      {pageData.ctablock.linkedItems.map((item: any) => {
+        return (
+          <CTABlock2
+            key={item.system.id}
+            backgroundimage={item.elements.backgroundimage.value[0]?.url}
+            heading={item.elements.heading.value}
+            subheading={item.elements.subheading.value}
+            ctabutton={item.elements.ctabuttons.linkedItems}
+          />
+        );
+      })}
     </div>
   );
 }

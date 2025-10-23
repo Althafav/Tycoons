@@ -87,9 +87,7 @@ export default function MenuComponent2() {
           {/* Logo */}
           <Link href="/" className="shrink-0" aria-label="Go to homepage">
             <img
-              width={140}
-              height={44}
-              className="object-contain h-11 w-[140px]"
+              className="object-contain  w-[160px]"
               src={logoSrc}
               alt={pageData.logocolored?.value?.[0]?.name ?? "Logo"}
             />
