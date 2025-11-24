@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={`${forumFont.variable} antialiased`}>
         <SmoothScrollWrapper>
           <MenuComponent2 />
-          <div className="">{children}</div>
+          <div className="mt-[76px]">{children}</div>
           <FooterComponent />
         </SmoothScrollWrapper>
       </body>

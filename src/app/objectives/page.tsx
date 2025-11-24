@@ -2,52 +2,30 @@ import CTAButton from "@/components/Blocks/CTAComponent";
 import Heading2 from "@/components/UI/Heading2";
 import Section from "@/components/UI/Section";
 import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
-import React from "react";
+import { buildMetadata } from "@/modules/seo";
+import React, { cache } from "react";
 
-export async function generateMetadata() {
-  const { data } = await deliveryClient
+const getPageData = cache(async () => {
+  const res = await deliveryClient
     .item("objectives_page___tycoons")
     .depthParameter(2)
     .toPromise();
+  return res.data.item.elements as any;
+});
 
-  const pageData = data.item.elements as any;
-
-  return {
-    title: pageData.metadata__pagetitle.value,
-    description: pageData.metadata__metadescription.value,
-    alternates: {
-      canonical: `${SITE_URL}objectives`,
-    },
-    openGraph: {
-      title: pageData.metadata__pagetitle.value,
-      description: pageData.metadata__metadescription.value,
-      url: `${SITE_URL}objectives`,
-      siteName: SITE_NAME,
-      images: [
-        {
-          url: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
-          width: 1200,
-          height: 630,
-        },
-      ],
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pageData.metadata__pagetitle.value,
-      description: pageData.metadata__metadescription.value,
-      images: [`${SITE_URL}assets/logos/tycoons-thumbnail.png`],
-    },
-  };
+export async function generateMetadata() {
+  const data = await getPageData();
+  return buildMetadata({
+    title: data.metadata__pagetitle?.value,
+    description: data.metadata__metadescription?.value,
+    image: `${SITE_URL}assets/logos/tycoons-thumbnail.png`,
+    canonical: `${SITE_URL}objectives`,
+  });
 }
 
 export default async function page() {
-  const { data } = await deliveryClient
-    .item("objectives_page___tycoons")
-    .depthParameter(2)
-    .toPromise();
-
-  const pageData = data.item.elements as any;
+  const pageData = await getPageData();
+  if (!pageData) return null;
   return (
     <div>
       <div className="relative py-12 sm:py-16 flex justify-center items-center">
@@ -93,7 +71,7 @@ export default async function page() {
                 return (
                   <div
                     key={item.system.id}
-                    className="p-14 gradient rounded-2xl sticky top-40 shadow-top"
+                    className="p-14 hover-card-lift gradient rounded-2xl sticky top-40 shadow-top"
                   >
                     <h4 className="text-3xl text-white mb-4">
                       {item.elements.name.value}
@@ -121,7 +99,10 @@ export default async function page() {
           <div className="grid sm:grid-cols-3 gap-5">
             {pageData.participantitems.linkedItems.map((item: any) => {
               return (
-                <div key={item.system.id} className="p-5 shadow-xl rounded-2xl">
+                <div
+                  key={item.system.id}
+                  className="p-5 hover-card-lift shadow-xl rounded-2xl"
+                >
                   <h4 className="text-2xl sm:text-3xl text-primary mb-4">
                     {item.elements.name.value}
                   </h4>
@@ -140,3 +121,5 @@ export default async function page() {
     </div>
   );
 }
+
+export const revalidate = 0;

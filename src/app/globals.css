@@ -6,8 +6,8 @@
 @theme {
   --color-primary: #BC9841;
   --color-primaryDark: #ab8a3b;
-  --color-secondary: #464445;
-  --color-secondaryDark: #2e2d2d;
+  --color-secondary: #442814;
+  --color-secondaryDark: #27170C;
 
 }
 
@@ -72,12 +72,12 @@ box-shadow: 0 -5px 6.4px -1px rgba(0, 0, 0, 0.25);
 @layer utilities {
   /* Basic zoom-in */
   .hover-card-zoom-in {
-    @apply shadow-xl p-10 rounded-3xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2;
+    @apply shadow-xl p-10 rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2;
   }
 
   /* Subtle lift + shadow only */
   .hover-card-lift {
-    @apply  transition-all duration-500 hover:-translate-y-2 ;
+    @apply  transition-all duration-300 hover:-translate-y-2 ;
   }
 
  

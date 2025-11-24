@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import CTAButton from "./Blocks/CTAComponent";
+import SplitText from "./Animations/SplitText";
 
 export default function HeroSection({
   heading,
@@ -34,8 +35,11 @@ export default function HeroSection({
 
       {/* Content */}
       <div className="container relative z-10 pt-20">
-        <h1 className="text-5xl font-bold mb-4">{heading}</h1>
-
+        <SplitText
+          text={heading}
+          as="h1"
+          className={`text-3xl sm:text-5xl font-bold mb-4`}
+        />
         <p className="text-lg">{subheading}</p>
 
         {ctabuttons && (

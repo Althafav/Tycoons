@@ -1,6 +1,7 @@
 import CTABlock2 from "@/components/Blocks/CTABlock2";
 import Section from "@/components/UI/Section";
 import { deliveryClient, SITE_NAME, SITE_URL } from "@/modules/Globals";
+import Link from "next/link";
 import React from "react";
 
 export async function generateMetadata({
@@ -22,12 +23,12 @@ export async function generateMetadata({
     title: pageData.metadata__pagetitle.value,
     description: pageData.metadata__metadescription.value,
     alternates: {
-      canonical: `${SITE_URL}${slug}`,
+      canonical: `${SITE_URL}investment-circles/${slug}`,
     },
     openGraph: {
       title: pageData.metadata__pagetitle.value,
       description: pageData.metadata__metadescription.value,
-      url: `${SITE_URL}${slug}`,
+      url: `${SITE_URL}investment-circles/${slug}`,
       siteName: SITE_NAME,
       images: [
         {
@@ -194,6 +195,49 @@ export default async function page({
           />
         );
       })}
+
+      {pageData.partnersblock.linkedItems.length > 0 && (
+        <Section>
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 gap-10">
+              {pageData.partnersblock.linkedItems.map(
+                (blockItem: any, index: number) => {
+                  return (
+                    <div className="" key={blockItem.system.id}>
+                      <div>
+                        <h2 className="text-center text-3xl mb-4">
+                          {blockItem.elements.heading.value}
+                        </h2>
+                        <div className="flex flex-wrap gap-5 items-center justify-center">
+                          {blockItem.elements.items.linkedItems.map(
+                            (partnerItem: any) => {
+                              return (
+                                <Link
+                                  href={partnerItem.elements.link.value}
+                                  key={partnerItem.system.id}
+                                  className={`w-[140px] h-[140px]  p-3 shadow-xl rounded-full flex justify-center partnerItems-center`}
+                                >
+                                  <img
+                                    src={
+                                      partnerItem.elements.image.value[0]?.url
+                                    }
+                                    alt={partnerItem.elements.name.value}
+                                    className={`w-[100px]  object-contain`}
+                                  />
+                                </Link>
+                              );
+                            }
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        </Section>
+      )}
     </div>
   );
 }

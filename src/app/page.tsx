@@ -1,4 +1,5 @@
 import ScrollRevealText from "@/components/Animations/ScrollRevealText";
+import SplitText from "@/components/Animations/SplitText";
 import CTABlock2 from "@/components/Blocks/CTABlock2";
 import CTAButton from "@/components/Blocks/CTAComponent";
 import HeroSection from "@/components/HeroSection";
@@ -82,9 +83,11 @@ export default async function Home() {
             <div className="absolute inset-0 bg-black/50"></div>
 
             <div className="container mx-auto relative z-10">
-              <h2 className="text-4xl sm:text-6xl font-bold text-center text-white mb-10">
-                {pageData.statisticsheading.value}
-              </h2>
+              <SplitText
+                text={pageData.statisticsheading.value}
+                as="h2"
+                className={`text-4xl sm:text-6xl font-bold text-center text-white mb-10`}
+              />
 
               <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-20">
                 {pageData.statsitems.linkedItems.map(
@@ -127,9 +130,14 @@ export default async function Home() {
           <div className="container mx-auto">
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <h2 className="text-primary text-3xl sm:text-5xl">
+                {/* <h2 className="text-primary text-3xl sm:text-5xl">
                   {pageData.downloadbrochureheading.value}
-                </h2>
+                </h2> */}
+                <SplitText
+                  text={pageData.downloadbrochureheading.value}
+                  as="h1"
+                  className="text-primary text-3xl sm:text-5xl"
+                />
               </div>
               <div>
                 <ScrollRevealText

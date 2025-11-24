@@ -11,10 +11,11 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import Section from "../UI/Section";
 import { usePathname } from "next/navigation";
+import SplitText from "../Animations/SplitText";
 
 export default function FooterComponent() {
   const [pageData, setPageData] = useState<any | null>(null);
-    const pathname = usePathname();
+  const pathname = usePathname();
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -32,40 +33,63 @@ export default function FooterComponent() {
     };
   }, []);
 
-  const showPartners = pathname === '/' || pathname === '/about'
+  const showPartners = pathname === "/" || pathname === "/about";
 
   if (!pageData) return null;
 
-
   return (
     <>
-     {showPartners && (
-       <Section>
-        <div className="container mx-auto">
-          <h2 className="text-center text-3xl mb-8">
-            {pageData.partnerheading.value}
-          </h2>
-          <div className="flex flex-wrap gap-5 items-center justify-center">
-            {pageData.partneritems.linkedItems.map((item: any) => {
-              return (
-                <Link
-                  href={item.elements.link.value}
-                  key={item.system.id}
-                  className="w-[150px] h-[150px] p-3 shadow-xl rounded-full flex justify-center items-center"
-                >
-                  <img
-                    src={item.elements.image.value[0]?.url}
-                    alt={item.elements.name.value}
-                    className="w-[100px] object-contain"
-                  />
-                </Link>
-              );
-            })}
+      {showPartners && (
+        <Section>
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 gap-10">
+              {pageData.partnersblock.linkedItems.map(
+                (blockItem: any, index: number) => {
+                  return (
+                    <div className="" key={blockItem.system.id}>
+                      <div>
+                        <SplitText
+                          text={blockItem.elements.heading.value}
+                          as="h2"
+                          className={`text-center text-3xl mb-4`}
+                        />
+                        <div className="flex flex-wrap gap-5 items-center justify-center">
+                          {blockItem.elements.items.linkedItems.map(
+                            (partnerItem: any) => {
+                              return (
+                                <Link
+                                  href={partnerItem.elements.link.value}
+                                  key={partnerItem.system.id}
+                                  className={` ${
+                                    index === 0
+                                      ? "w-[180px] h-[180px]"
+                                      : "w-[140px] h-[140px]"
+                                  } p-3 shadow-xl rounded-full flex justify-center partnerItems-center`}
+                                >
+                                  <img
+                                    src={
+                                      partnerItem.elements.image.value[0]?.url
+                                    }
+                                    alt={partnerItem.elements.name.value}
+                                    className={`${
+                                      index === 0 ? "w-[140px]" : "w-[100px]"
+                                    } object-contain`}
+                                  />
+                                </Link>
+                              );
+                            }
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
           </div>
-        </div>
-      </Section>
-     )}
-      <div className="bg-secondary py-12 sm:py-16">
+        </Section>
+      )}
+      <div className="bg-secondaryDark py-12 sm:py-16">
         <div className="container mx-auto">
           <div className="flex justify-between sm:flex-row flex-col gap-5">
             <div>
